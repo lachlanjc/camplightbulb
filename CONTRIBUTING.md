@@ -4,9 +4,9 @@ First, thank you for contributing! Here’s some basics about our codebase.
 
 ## Quick Start
 
-1. Clone, `cd`
-2. `yarn && yarn run dev`
-3. Open [localhost:8000](http://localhost:8000) (uses hot reloading)
+1.  Clone, `cd`
+2.  `yarn && yarn run dev`
+3.  Open [localhost:8000](http://localhost:8000) (uses hot reloading)
 
 ## Organization
 
@@ -19,7 +19,7 @@ This site is a standard [Gatsby](https://www.gatsbyjs.org) site, so:
 
 ## Formatting
 
-In all prose (form labels, text blocks, etc), use rich quotes.
+In all prose (paragraphs, headings, page descriptions, etc), use rich quotes.
 
 For code formatting, we use [Prettier](https://prettier.io) with options.
 Before committing, run `yarn run fmt` and you’re good to go.
@@ -27,7 +27,7 @@ Before committing, run `yarn run fmt` and you’re good to go.
 ## Design System
 
 This site uses the [Hack Club Design System](https://design.hackclub.com) for
-all UI primitives (Text, Buttons, etc).
+all UI primitives (Box, Text, Buttons, etc).
 
 Use `styled-components`’s
 [`.extend`](https://www.styled-components.com/docs/basics#extending-styles)
