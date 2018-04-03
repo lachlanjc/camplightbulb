@@ -1,4 +1,8 @@
 module.exports = {
+  siteMetadata: {
+    name: 'Camp Lightbulb',
+    siteUrl: 'https://camplightbulb.lachlanjc.me'
+  },
   plugins: [
     'gatsby-plugin-resolve-src',
     {
