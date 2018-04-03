@@ -11,36 +11,29 @@ import {
   Section,
   Link as A
 } from '@hackclub/design-system'
+import { theme } from 'theme'
 import Helmet from 'react-helmet'
 import Link from 'gatsby-link'
 import Nav from 'components/Nav'
-import Stat from 'components/Stat'
-import {
-  Triangle,
-  Hexagon,
-  Pentagon,
-  Square,
-  Circle,
-  Line
-} from 'components/Shapes'
-import DonateForm from 'components/donate/DonateForm'
-import Spent from 'components/donate/Spent'
 import Footer from 'components/Footer'
-import commaNumber from 'comma-number'
 
-const Header = Section.withComponent('header').extend`
-  background: url('/pattern.svg');
-  > div {
-    display: grid;
-    grid-gap: ${props => props.theme.space[4]}px;
-    ${props => props.theme.mediaQueries.md} {
-      grid-template-columns: 3fr 2fr;
-    }
-  }
-  + div {
-    position: relative;
-  }
-`
+const corporate =
+  "American Express, Black & White Party, BMW, BNY Mellon, City Sports, Enterprise Car Rental, Fidelity Investments, FMC Ice Sports, Pfizer, Planet Fitness, Salt House Hotels, Seamen's Bank, Standard Hotels, Stop And Shop, Tiedemann Wealth Management"
+
+const grants =
+  'Bennett Foundation, Brookline Community Foundation, Cape Cod Five Foundation, Coil Foundation, FLAG Flag Football, Forrest Foundation, Gale Fund, Liberty Hill Foundation, National Gay Pilots Association, Our Fund, The Palette Fund, Pathways for Change, Provincetown United Methodist Church, Rebecca Pomroy Foundation, Stonewall Community Foundation'
+
+const guiding =
+  'Dina Bettinsoli, David Bowd & Kevin O‘Shea, Jeep Bryant, Lisa Drapkin, Jack Hornor, Hans Eijmbrechts & Wiebe Tinga, Robert Ketterer, Scott McCoy, Terrence Meck & Breton Alberti, Linda Rohler, Rob Saltzman, Craig Smith & Ian Bruce, Juno Spira, Heather Ward, Andrew Woo'
+
+const donors =
+  "John Abodeely, Harmony Abrams, Jessica Lynch Alfaro, Scott Allegretti, Susan B, Mitchell Baker & Thom Egan, Bernta Bechler, Bridget Bettigole, Julie Blazar, Ezra Block & James Hung, Alan Bloom, Joe Bolduc, Marcus Boyd, Justin Breton, James Bruno, Jerrell Campbell, Christopher Carson, Bonnie Catena, Kate Clinton, Alice Cohen, Catherine Colinvaux, Bruno Confalone, Steve Corkin, John Curtin, Denise Daley, Lindsey Daman, Sarah Dean, Bill Docker & Tom Stearns, Rick Erickson & Neil Korpinen, Stan Everett, Danielle Fairlee, Ray Faulkner, Christopher Ferguson, Michelle Fisher, Ian Ford, Andrew Fornarola, Dirk Fuhrmann, Andrew Fullem, Elizabeth Galalis, Carolyn Gilbert, Leah Gordon, Stevenson Greene, Brandi Griffith, Will Hackner, Gail Hardenbergh, Skylar Hellyer, Christine Horovitz, Dianne Hunt-Mason, Elise Hurwitz, Daniel Klipper, Marcy Kolchinsky, Ron Kollen, Kara Konken, David LaLiberte, Tamar London, Family & Friends of Patti Hughes Lonergan, John & Juliet Marrkand, Laura McDonnell, Matt Medaglia, Andrea Morgan, Bernard Morrissey, Sean Morrow, Chris Nagle, Steven Nix, Hilary North, Niall O'Brien, Melissa Packer, Tim Palazzola, Tajamika Paxton, Linda Peters, April Rauch, Aileen Reilly, Lewis Rieley, Maureen Rogers, Trevor Rosenthal, Abram Sands, Ben Sands, Jacob Sands, G. Scott Shatzer, Zachary Soreff, Martyn Swinkels, Scott Taber, Peter Tenggren, Carlos Terra, Ryan Tofil, Vaughn Waters, Martha Ann Weaver, Marc Weinman, Barbara Williams, Jay Zimmerman"
+
+const community = {
+  la: 'Perkowski Legal, The Trevor Project, Varsity Gay League',
+  ptown:
+    'Anchor Inn, Canteen, Cape Air, Center for Coastal Studies, Daddy’s Burritos, Fine Arts Work Center, Mailspot Express, Marc Cortale Productions, Ross Grill, Street Eatz'
+}
 
 const Row = Box.extend`
   display: grid;
@@ -51,92 +44,56 @@ const Row = Box.extend`
   }
 `
 
-const Financials = Box.extend`
+const Split = Box.extend`
   display: grid;
-  border-radius: ${props => props.theme.radius};
-  overflow: hidden;
-
+  grid-gap: ${props => props.theme.space[4]}px;
   ${props => props.theme.mediaQueries.md} {
-    grid-template-columns: 2fr 3fr;
+    grid-template-columns: 1fr 1fr;
   }
 `
 
-const Stats = Box.extend`
-  div {
-    width: 100%;
-    display: block;
-    text-align: left !important;
-  }
-  span:before {
-    content: '$';
-    font-size: ${props => props.theme.fontSizes[4]}px;
-    margin-left: -12px;
-    vertical-align: super;
-  }
-  p {
-    color: ${props => props.theme.colors.red[1]};
-  }
-`
-
-const Shapes = Box.extend`
-  display: none;
+const Grid = Box.extend`
+  display: grid;
+  grid-gap: ${props => props.theme.space[3]}px;
+  padding-left: 0;
+  list-style: none;
   ${props => props.theme.mediaQueries.md} {
-    display: block;
-    float: right;
-    position: relative;
-    svg {
-      position: absolute;
-    }
+    grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  }
+  li {
+    background-color: ${props => props.theme.colors.snow};
+    padding: ${props => props.theme.space[2]}px;
+    display: flex;
+    align-items: center;
   }
 `
+const GridOf = ({ data, ...props }) => (
+  <Grid {...props}>
+    {data
+      .split(', ')
+      .map((item, i) => <li key={`${item}-${i}`} children={item} />)}
+  </Grid>
+)
 
-const WishShapes = Shapes.extend`
-  svg {
-    &:first-child {
-      top: 0;
-      right: 0;
-      color: rgba(115, 45, 228, 0.75);
-      z-index: 1;
-    }
-    &:last-child {
-      top: 0;
-      right: 4rem;
-      color: rgba(45, 228, 207, 0.75);
-    }
-  }
-`
-
-const ContributionShapes = Shapes.extend`
-  svg {
-    right: 2rem;
-    top: 6rem;
-    color: rgba(45, 228, 115, 0.75);
-  }
-`
-
-const headline = { f: [5, 6], color: 'black', style: { lineHeight: '1.125' } }
-const subhline = { f: [3, 4], color: 'black', style: { lineHeight: '1.375' } }
-const subtext = { f: [3, 4], color: 'black', style: { lineHeight: '1.5' } }
-
-const contentContainer = {
-  maxWidth: 64,
-  w: 1,
-  p: [3, 2],
-  style: { position: 'relative' }
-}
-const content = { maxWidth: 48, mx: 0 }
+const Contibutors = ({ name, list, ...props }) => (
+  <Container {...theme.styles.contentContainer} py={[3, 4]}>
+    <Heading.h2
+      f={[4, 5]}
+      mb={3}
+      color="black"
+      align="center"
+      children={name}
+    />
+    <GridOf data={list} />
+  </Container>
+)
 
 A.link = A.withComponent(Link)
+const Submit = LargeButton.withComponent('input')
 
-const title = 'Donate to Hack Club'
+const title = 'Donate to Camp Lightbulb'
 const description =
-  'Contribute today to empower the next generation and help start a coding club at every high school.'
-
-const stats = {
-  monthly: 6742.71,
-  student: 5,
-  club: 100
-}
+  'Contribute today to empower the next generation of LGBTQ+ youth with nation-wide camps.'
 
 export default () => (
   <Fragment>
@@ -152,101 +109,70 @@ export default () => (
       ]}
     />
     <Nav color="muted" />
-    <Header px={0} pt={[3, 4]} pb={[4, 5, 6]}>
-      <Container {...contentContainer} align="left" py={[4]}>
-        <Container maxWidth={36} mx={0}>
-          <Heading.h1 color="primary" f={[3, 4]} caps>
-            Donate to Hack Club
-          </Heading.h1>
-          <Heading.h2 my={3} {...headline}>
-            We rely on patrons like you to bring coding around the world.
-          </Heading.h2>
-          <Text {...subhline}>
-            Contribute today to empower the next generation by helping start a
-            coding club at every high school—we need your help.
-          </Text>
-          <Text mt={3} f={2} color="muted">
-            Your contribution is tax-deductible.<br />
-            Hack Club‘s nonprofit EIN is 81-2908499.
-          </Text>
-        </Container>
-        <Card bg="snow" p={[3, 4]} style={{ overflow: 'hidden' }}>
-          <DonateForm />
-        </Card>
-      </Container>
-    </Header>
-    <Container {...contentContainer}>
-      <WishShapes mt={3}>
-        <Triangle size={128} rotate={64} />
-        <Circle size={128} />
-      </WishShapes>
-      <Container {...content}>
-        <Heading.h2 {...headline}>
-          We’re building the organization we wished existed in the world.
+    <Section.header align="center" py={4}>
+      <Container maxWidth={48} mt={[4, 5, 6]}>
+        <Heading.h1 color="primary" f={[3, 4]} caps>
+          Donate to Camp Lightbulb
+        </Heading.h1>
+        <Heading.h2 my={3} {...theme.styles.headline} {...theme.styles.sans}>
+          We rely on patrons like you for our camps for LGBTQ+ youth.
         </Heading.h2>
-        <Text my={3} {...subtext}>
-          From day one, Hack Club has been a labor of love. We wanted to build
-          an organization we’d be proud to be a member of, to be a donor of, and
-          to be an employee of.
+        <Text {...theme.styles.subhline} mb={4}>
+          Contribute today to empower the next generation of LGBTQ+ teens with
+          the community they need.
         </Text>
-        <Text {...subtext}>
-          A core component of that is <strong>total transparency</strong>. It‘s
-          the reason we open source all{' '}
-          <A href="https://github.com/hackclub/hackclub">our content</A>
-          {', '}
-          <A href="https://github.com/hackclub/monolith">our code</A>
-          {', '}
-          <A href="https://github.com/hackclub/site">our website</A>, and our
-          leaders and members are available on{' '}
-          <A href="https://slack.hackclub.com">our Slack</A>. You deserve to
-          know right where your contribution will go—so{' '}
-          <A href="https://github.com/hackclub/ledger" bold>
-            all of our financials are public
-          </A>.
+        <form
+          action="https://www.paypal.com/cgi-bin/webscr"
+          method="post"
+          target="_top"
+        >
+          <input type="hidden" name="cmd" value="_s-xclick" />
+          <input type="hidden" name="hosted_button_id" value="2RGGTPEPGPEPJ" />
+          <Submit bg="info" type="submit" value="Donate on PayPal »" />
+          <img
+            alt=""
+            border={0}
+            src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif"
+            width={1}
+            height={1}
+          />
+        </form>
+        <Text mt={3} f={2} color="muted">
+          Your contribution is tax-deductible.<br />
+          Camp Lightbulb’s nonprofit EIN is 81-2908499.
+        </Text>
+        <Text {...theme.styles.subtext} f={[4, 5]} mt={6}>
+          Camp Lightbulb is also grateful for the crucial support from corporate
+          sponsors, grant makers, individual donors and the local community.
         </Text>
       </Container>
-      <Row my={5} {...content}>
+    </Section.header>
+    <Contibutors name="Corporate Support" list={corporate} />
+    <Contibutors name="Grant Support" list={grants} />
+    <Contibutors name="Guiding Light Donors ($1000+)" list={guiding} />
+    <Contibutors name="Donors" list={donors} />
+    <Container {...theme.styles.contentContainer} py={[3, 4]} mb={4}>
+      <Heading.h2
+        f={[4, 5]}
+        mb={3}
+        color="black"
+        align="center"
+        children="Community Supporters"
+      />
+      <Split>
         <Box>
-          <Heading.h2 {...headline}>
-            Your contribution is for our clubs.
-          </Heading.h2>
-          <ContributionShapes>
-            <Pentagon size={128} rotate={16} />
-          </ContributionShapes>
+          <Heading.h3 {...theme.styles.subhline} mb={2} align="center">
+            Provincetown
+          </Heading.h3>
+          <GridOf data={community.ptown} />
         </Box>
         <Box>
-          <Text {...subtext}>
-            We spend our entire budget on paying{' '}
-            <A.link to="/team">our team</A.link> and directly improving our
-            clubs. There‘s no advertising waste, bonusses, or unused
-            contributions.
-          </Text>
-          <Financials mt={4}>
-            <Box bg="primary" color="white" p={[3, 4]} pr={2}>
-              <Heading.h3 f={4} mb={2} caps>
-                Financials
-              </Heading.h3>
-              <Stats>
-                <Stat
-                  f={6}
-                  value={commaNumber(stats.monthly)}
-                  label="monthly spend"
-                  mb={3}
-                  w={1}
-                />
-                <Stat f={6} mb={2} value={stats.club} label="per club" />
-                <Stat f={6} value={stats.student} label="per student" />
-              </Stats>
-            </Box>
-            <Box bg="snow" p={[3, 4]}>
-              <Heading.h3 f={4} my={0} caps>
-                Category breakdown
-              </Heading.h3>
-              <Spent />
-            </Box>
-          </Financials>
+          <Heading.h3 {...theme.styles.subhline} mb={2} align="center">
+            Los Angeles
+          </Heading.h3>
+          <GridOf data={community.la} />
         </Box>
-      </Row>
+      </Split>
     </Container>
     <Footer />
   </Fragment>

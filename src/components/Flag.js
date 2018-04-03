@@ -1,20 +1,19 @@
 import React from 'react'
-import { Link as A } from '@hackclub/design-system'
+import styled from 'styled-components'
 import Link from 'gatsby-link'
 
-const Flag = A.withComponent(Link).extend.attrs({
+const Flag = styled(Link).attrs({
   to: '/',
   'aria-label': 'Homepage'
 })`
-  background: url(/orpheus_flag.svg) no-repeat;
-  background-position: top center;
+  background: url(/flag.svg) no-repeat;
+  background-size: auto 100%;
   flex-shrink: 0;
-  width: 8rem;
-  height: 3rem;
-  z-index: 0;
+  width: 36px;
+  height: 48px;
   ${props => props.theme.mediaQueries.md} {
-    width: 10rem;
-    height: 4rem;
+    width: 48px;
+    height: 64px;
   }
 `
 

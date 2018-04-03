@@ -8,7 +8,7 @@ module.exports = {
         short_name: 'Camp Lightbulb',
         start_url: '/',
         background_color: '#fff',
-        theme_color: '#ff006a',
+        theme_color: '#ff0059',
         display: 'minimal-ui'
       }
     },

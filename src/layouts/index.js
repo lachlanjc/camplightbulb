@@ -1,7 +1,8 @@
 import React from 'react'
 import Helmet from 'react-helmet'
 import data from 'data.json'
-import { ThemeProvider, colors } from '@hackclub/design-system'
+import ThemeProvider from 'theme'
+import { colors } from 'theme/config'
 
 const { name, title, description, img, url, org } = data
 
@@ -36,6 +37,7 @@ export default props => (
         { property: 'og:type', content: 'website' },
         { property: 'og:url', content: url }
       ])}
+      <link rel="stylesheet" href="/fonts.css" />
       <script type="application/ld+json" children={JSON.stringify(org)} />
     </Helmet>
     {props.children()}

@@ -2,7 +2,7 @@
   "name": "Camp Lightbulb",
   "title": "Camp Lightbulb",
   "description":
-    "Camp Lightbulb celebrates LGBTQ youth with magical, overnight camp experiences, filled with fun, pride, community, friends, support, self-discovery and memories to last a lifetime.",
+    "Camp Lightbulb celebrates LGBTQ+ youth with magical, overnight camp experiences, filled with fun, pride, community, friends, support, self-discovery and memories to last a lifetime.",
   "url": "https://camplightbulb.org",
   "twitter": "@camplightbulb",
   "img": "https://camplightbulb.org/logo.png",
@@ -20,7 +20,7 @@
     "contactPoint": [
       {
         "@type": "ContactPoint",
-        "email": "team@camplightbulb.org",
+        "email": "camplightbulb@gmail.com",
         "contactType": "customer support",
         "url": "https://camplightbulb.org"
       }
