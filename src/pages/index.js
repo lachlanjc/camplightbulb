@@ -116,8 +116,8 @@ export default () => (
         </Text>
       </Container>
       <Grid>
-        <Photo image="beach.jpg" />
-        <Photo image="stonewall.jpg" />
+        <Photo image="/beach.jpg" />
+        <Photo image="/stonewall.jpg" />
       </Grid>
       <Container maxWidth={48} pt={[4, 5]} align="center">
         <Action to="/register" f={[3, 4]}>
