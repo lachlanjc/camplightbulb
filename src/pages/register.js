@@ -38,6 +38,29 @@ const Header = Section.extend`
   }
 `
 
+const CTA = LargeButton.extend`
+  position: relative;
+  top: 200%;
+  transition: transform 0.125s ease-out;
+  will-change: transform;
+  &:hover,
+  &:focus {
+    transform: scale(1.06);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    transform: none !important;
+  }
+`
+
+const Row = Container.extend.attrs({ px: 3, py: [4, 5] })`
+  display: grid;
+  grid-gap: ${props => props.theme.space[3]}px;
+  text-align: left;
+  ${props => props.theme.mediaQueries.md} {
+    grid-template-columns: ${props => props.cols || '1fr 1fr'};
+  }
+`
+
 const Modules = Container.extend`
   display: grid;
   grid-gap: ${props => props.theme.space[3]}px;
@@ -52,44 +75,6 @@ const Modules = Container.extend`
   }
   svg {
     margin-left: -${props => props.theme.space[1]}px;
-  }
-`
-
-const OthersCard = Card.extend`
-  max-width: 28rem;
-
-  ${props => props.theme.mediaQueries.md} {
-    transform: rotate(2deg);
-  }
-
-  p {
-    color: ${props => props.theme.colors.slate};
-    font-size: ${props => props.theme.fontSizes[2]};
-    line-height: 1.375;
-    margin-top: ${props => props.theme.space[3]};
-  }
-`
-
-const Row = Container.extend.attrs({ px: 3, py: [4, 5] })`
-  display: grid;
-  grid-gap: ${props => props.theme.space[3]}px;
-  text-align: left;
-  ${props => props.theme.mediaQueries.md} {
-    grid-template-columns: ${props => props.cols || '1fr 1fr'};
-  }
-`
-
-const CTA = LargeButton.extend`
-  position: relative;
-  top: 200%;
-  transition: transform 0.125s ease-out;
-  will-change: transform;
-  &:hover,
-  &:focus {
-    transform: scale(1.06);
-  }
-  @media (prefers-reduced-motion: reduce) {
-    transform: none !important;
   }
 `
 
@@ -149,7 +134,7 @@ const Counselors = Box.extend`
 const Counselor = ({ name, ...props }) => (
   <Box align="center">
     <Avatar
-      src={`team/${lowerCase(name.split(' ')[0])
+      src={`/team/${lowerCase(name.split(' ')[0])
         .split(' ')
         .join('')}.jpg`}
       size={128}
