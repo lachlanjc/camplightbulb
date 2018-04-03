@@ -180,7 +180,8 @@ const NewCounselor = ({ name, ...props }) => (
 )
 
 const title = 'Register for Camp Lightbulb'
-const description = 'Join us for an upcoming camp for LGBTQ+ youth'
+const desc =
+  'Join us for an upcoming camp for LGBTQ+ youth in Provincetown, Los Angeles, New York City, or DC.'
 
 export default () => (
   <Fragment>
@@ -188,17 +189,17 @@ export default () => (
       title={title}
       meta={[
         { name: 'twitter:title', content: title },
-        { name: 'description', content: description },
-        { name: 'twitter:description', content: description },
+        { name: 'description', content: desc },
+        { name: 'twitter:description', content: desc },
         { property: 'og:title', content: title },
-        { property: 'og:description', content: description },
+        { property: 'og:description', content: desc },
         { property: 'og:url', content: 'https://camplightbulb.org/register' }
       ]}
     />
     <Header>
       <Nav />
-      <Container {...theme.styles.content} px={3} py={[4, 5, 6]}>
-        <Heading.h1 {...theme.styles.headline} color="white" mb={[3, 4]}>
+      <Container {...theme.styles.content} px={3} pt={[5, 6]} pb={[4, 5, 6]}>
+        <Heading.h1 {...theme.styles.headline} color="white" my={[3, 4]}>
           Register for Camp Lightbulb
         </Heading.h1>
         <CTA

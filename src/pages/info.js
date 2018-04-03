@@ -57,10 +57,13 @@ export default () => (
       <Container
         {...theme.styles.content}
         pt={[5, 6]}
-        pb={[3, 4]}
-        align={['left', 'center']}
+        pb={[2, 4]}
+        px={4}
+        align="center"
       >
-        <Heading.h1 f={[6, 7]}>We’re here to help.</Heading.h1>
+        <Heading.h1 my={3} f={[6, 7]}>
+          We’re here to help.
+        </Heading.h1>
       </Container>
     </Header>
     <Row>

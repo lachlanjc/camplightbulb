@@ -48,7 +48,7 @@ const HeaderBox = Box.withComponent('header').extend`
   }
 `
 
-const Action = LargeButton.extend`
+const Action = LargeButton.withComponent(Link).extend`
   transition: transform 0.125s ease-out;
   will-change: transform;
   transform: scale(1);
@@ -60,7 +60,6 @@ const Action = LargeButton.extend`
     transform: none !important;
   }
 `
-Action.link = Action.withComponent(Link)
 
 const Grid = Box.extend`
   display: grid;
@@ -103,9 +102,9 @@ export default () => (
         <Heading.h1 f={[6, 7]} color="white" mb={[3, 4]}>
           Join Us for Camp Lightbulb
         </Heading.h1>
-        <Action.link to="/register" f={[3, 4]}>
+        <Action to="/register" f={[3, 4]}>
           Learn more »
-        </Action.link>
+        </Action>
       </Container>
     </Animator>
     <Container pt={[3, 4]} pb={[4, 5]} px={3}>
@@ -121,9 +120,9 @@ export default () => (
         <Photo image="stonewall.jpg" />
       </Grid>
       <Container maxWidth={48} pt={[4, 5]} align="center">
-        <Action.link to="/register" f={[3, 4]}>
+        <Action to="/register" f={[3, 4]}>
           Learn more »
-        </Action.link>
+        </Action>
         <Text color="slate" f={[3, 4]} mt={4}>
           Camp Lightbulb is a nonprofit running seasonal camps for gay, bi,
           trans, and other LGBTQ+ youth, creating community and spreading love

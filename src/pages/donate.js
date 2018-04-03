@@ -54,7 +54,8 @@ const Split = Box.extend`
 
 const Grid = Box.extend`
   display: grid;
-  grid-gap: ${props => props.theme.space[3]}px;
+  grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+  grid-gap: ${props => props.theme.space[2]}px;
   padding-left: 0;
   list-style: none;
   ${props => props.theme.mediaQueries.md} {
@@ -76,7 +77,7 @@ const GridOf = ({ data, ...props }) => (
 )
 
 const Contibutors = ({ name, list, ...props }) => (
-  <Container {...theme.styles.contentContainer} py={[3, 4]}>
+  <Container px={[2, 3]} py={[3, 4]}>
     <Heading.h2
       f={[4, 5]}
       mb={3}
@@ -109,8 +110,8 @@ export default () => (
       ]}
     />
     <Nav color="muted" />
-    <Section.header align="center" py={4}>
-      <Container maxWidth={48} mt={[4, 5, 6]}>
+    <Section.header align="center" py={5} px={3}>
+      <Container maxWidth={48} mt={[4, 5]}>
         <Heading.h1 color="primary" f={[3, 4]} caps>
           Donate to Camp Lightbulb
         </Heading.h1>

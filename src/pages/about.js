@@ -43,7 +43,7 @@ export default () => (
     />
     <Nav />
     <Header align="center">
-      <Container {...theme.styles.content} pt={[4, 5]} pb={[3, 4]}>
+      <Container {...theme.styles.content} pt={5} pb={[3, 4]}>
         <Text {...theme.styles.subtext} color="white" f={[3, 4]} regular>
           Camp Lightbulb campers discover a bright picture of queer life and can
           express themselves without hesitation in a fun, carefree environment,
@@ -52,7 +52,7 @@ export default () => (
         </Text>
       </Container>
     </Header>
-    <Container maxWidth={42} mx="auto">
+    <Container maxWidth={42} px={3} mx="auto">
       <Heading.h1 {...theme.styles.headline} mt={5}>
         About
       </Heading.h1>
