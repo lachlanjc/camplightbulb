@@ -148,6 +148,7 @@ const NewCounselorAvatar = Flex.extend`
   border-radius: 64px;
   margin: auto;
 `
+A.link = A.withComponent(Link)
 const NewCounselor = ({ name, ...props }) => (
   <A.link to="/join" color="black" align="center">
     <NewCounselorAvatar bg="blue.2" align="center" justify="center">
@@ -181,8 +182,8 @@ export default () => (
         { property: 'og:url', content: 'https://camplightbulb.org/register' }
       ]}
     />
+    <Nav />
     <Header>
-      <Nav />
       <Container {...theme.styles.content} px={3} pt={[5, 6]} pb={[4, 5, 6]}>
         <Heading.h1 {...theme.styles.headline} color="white" my={[3, 4]}>
           Register for Camp Lightbulb
