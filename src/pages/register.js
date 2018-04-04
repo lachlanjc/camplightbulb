@@ -280,7 +280,7 @@ export default () => (
           beyond fun and I made new friends I’ll know forever.
         </Quote>
         <Quote bg="orange" by="Diana, 16">
-          Camp Lightbulb is so fun. This is so fake.
+          I’ll get a real quote here soon.
         </Quote>
       </Box>
     </Row>
